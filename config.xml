@@ -8,7 +8,7 @@
 
         version   = "1.0.0">
 
-    <name>MyAppNotificationV1234</name>
+    <name>TestAppForNotification</name>
 
 
 
@@ -89,9 +89,6 @@
     <gap:splash src="res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
 
     <gap:plugin name="GenericPush" />
-
-	
-
 </widget>
 
 
