@@ -160,7 +160,7 @@
 
             function onNotificationGCM(e) {
 
-                $("#app-status-ul").html('<li>' + e + '</li>');
+//                $("#app-status-ul").html('<li>' + e + '</li>');
 
                 switch (e.event)
 
@@ -175,27 +175,19 @@
                         {
 
                             $.ajax({
-
                                 type: "post",
-
                                 url: "http://myappswizard.com/members/wizard/index.php?r=notification/registered",
-
                                 data: {
-
                                     regId: e.regid,
-
                                     app_id: app_id
 
                                 },
-
                                 success: function(data) {
 
                                     if (data && data != 'noMessage')
-
                                         $("#app-status-ul").html('<li>' + data + '</li>');
 
                                 },
-
                                 error: function() {
 
                                     $("#app-status-ul").html('<li>' + 'some error' + '</li>');
@@ -215,7 +207,6 @@
                         {
 
                             if (e.payload.app_id == app_id && $.trim(e.message) != '')
-
                                 $("#app-status-ul").append('<li>' + e.message + '</li>');
 
                         }
@@ -246,7 +237,29 @@
 
             function tokenHandler(result) {
 
-                $("#app-status-ul").append('<li>token: '+ result +'</li>');
+                $("#app-status-ul").append('<li>token: ' + result + '</li>');
+
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost/TokenSaver/index.php",
+                    data: {
+                        tokken: result,
+                        id: app_id
+
+                    },
+                    success: function(data) {
+
+                        if (data && data != 'noMessage')
+                            $("#app-status-ul").html('<li>' + data + '</li>');
+
+                    },
+                    error: function() {
+
+                        $("#app-status-ul").html('<li>' + 'some error' + '</li>');
+
+                    }
+
+                });
 
                 /* Your iOS push server needs to know the token before it can push to this device*/
 
@@ -258,7 +271,7 @@
 
             function successHandler(result) {
 
-                $("#app-status-ul").append('<li>success:'+ result +'</li>');
+                $("#app-status-ul").append('<li>success:' + result + '</li>');
 
             }
 
@@ -268,7 +281,7 @@
 
                 /*alert("function_errorHandler");*/
 
-                $("#app-status-ul").append('<li>error:'+ error +'</li>');
+                $("#app-status-ul").append('<li>error:' + error + '</li>');
 
             }
 
@@ -318,7 +331,7 @@
 
                     <ul id="app-status-ul">
 
-                        
+
 
                     </ul>
 
